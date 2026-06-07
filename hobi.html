@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hobi — Dwi Rosa Handayani</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --pink-50: #fff0f5;
+      --pink-100: #ffd6e7;
+      --pink-200: #ffb3cf;
+      --pink-300: #ff8fb5;
+      --pink-400: #ff6699;
+      --pink-600: #cc2260;
+      --rose: #f9c0d5;
+      --petal: #ffdcea;
+      --white: #ffffff;
+      --off: #fffafc;
+      --dark: #1a0a10;
+      --mid: #5c2a3a;
+      --muted: #a0687a;
+      --shadow-card: 0 4px 24px rgba(255,100,150,0.1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--off); color: var(--dark); overflow-x: hidden; }
+
+    .bg-layer { position: fixed; inset: 0; z-index: -1; background: linear-gradient(160deg, #fff0f5 0%, #ffffff 55%, #fff5f8 100%); overflow: hidden; }
+    .blob { position: absolute; border-radius: 50%; filter: blur(72px); opacity: 0.45; animation: bfloat 14s ease-in-out infinite alternate; }
+    .b1 { width: 400px; height: 400px; background: #ffd6e7; top: -80px; left: -60px; }
+    .b2 { width: 300px; height: 300px; background: #ffb3cf; bottom: -60px; right: -40px; animation-delay: -6s; }
+    @keyframes bfloat { from{transform:translate(0,0);} to{transform:translate(20px,14px);} }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; gap: 12px;
+      padding: 0 48px; height: 62px;
+      background: rgba(255,255,255,0.8); backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--rose);
+    }
+    .nav-back { display: flex; align-items: center; gap: 7px; text-decoration: none; font-size: 0.8rem; font-weight: 600; color: var(--muted); transition: color 0.2s; }
+    .nav-back:hover { color: var(--pink-500); }
+    .nav-sep { color: var(--rose); }
+    .nav-current { font-size: 0.8rem; color: var(--dark); font-weight: 500; }
+    .nav-logo { margin-left: auto; font-family: 'Fraunces', serif; font-size: 0.95rem; font-weight: 900; color: var(--dark); }
+    .nav-logo span { color: var(--pink-400); }
+
+    /* HERO */
+    .hobi-hero { padding: 100px 48px 56px; max-width: 900px; margin: 0 auto; }
+    .hobi-hero-tag { display: inline-flex; align-items: center; gap: 6px; background: var(--pink-100); color: var(--pink-600); border-radius: 100px; padding: 5px 14px; font-size: 0.72rem; font-weight: 600; margin-bottom: 18px; }
+    .hobi-hero h1 { font-family: 'Fraunces', serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; color: var(--dark); line-height: 1.1; margin-bottom: 16px; }
+    .hobi-hero h1 em { font-style: italic; color: var(--pink-400); }
+    .hobi-hero p { font-size: 1rem; line-height: 1.8; color: var(--mid); max-width: 580px; }
+
+    /* SECTIONS */
+    .section-wrap { max-width: 1000px; margin: 0 auto; padding: 64px 48px; }
+    .label { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--pink-400); margin-bottom: 10px; }
+    .section-title { font-family: 'Fraunces', serif; font-size: clamp(1.7rem, 2.8vw, 2.4rem); font-weight: 900; color: var(--dark); margin-bottom: 32px; line-height: 1.2; }
+    .section-title em { font-style: italic; color: var(--pink-400); }
+
+    /* ── CROCHET CAROUSEL ── */
+    #crochet { background: rgba(255,214,231,0.1); }
+    .carousel-wrap { position: relative; }
+    .carousel {
+      display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory;
+      padding-bottom: 16px; scrollbar-width: none; cursor: grab;
+    }
+    .carousel::-webkit-scrollbar { display: none; }
+    .carousel.grabbing { cursor: grabbing; }
+    .carousel-slide {
+      flex: 0 0 300px; scroll-snap-align: start;
+      background: var(--white); border-radius: 22px; overflow: hidden;
+      border: 1px solid var(--rose); box-shadow: var(--shadow-card);
+      transition: transform 0.2s;
+    }
+    .carousel-slide:hover { transform: translateY(-4px); }
+    .carousel-img {
+      width: 100%; aspect-ratio: 1; background: linear-gradient(135deg, var(--pink-100), var(--petal));
+      overflow: hidden; display: flex; align-items: center; justify-content: center;
+    }
+    .carousel-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .carousel-img .placeholder { font-size: 3rem; opacity: 0.3; }
+    .carousel-info { padding: 18px 20px; }
+    .carousel-name { font-weight: 700; font-size: 0.95rem; color: var(--dark); margin-bottom: 4px; }
+    .carousel-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.55; }
+    .carousel-tag { display: inline-block; margin-top: 10px; font-size: 0.68rem; font-weight: 600; background: var(--pink-100); color: var(--pink-600); padding: 3px 10px; border-radius: 100px; }
+
+    /* carousel nav buttons */
+    .carousel-nav { display: flex; gap: 10px; margin-top: 20px; }
+    .carousel-btn {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: var(--white); border: 1.5px solid var(--pink-200); color: var(--pink-400);
+      font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, transform 0.2s; font-family: inherit;
+    }
+    .carousel-btn:hover { background: var(--pink-100); transform: scale(1.08); }
+    .carousel-dots { display: flex; gap: 7px; align-items: center; margin-left: 8px; }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--pink-200); transition: background 0.2s, transform 0.2s; cursor: pointer; }
+    .dot.active { background: var(--pink-400); transform: scale(1.3); }
+
+    /* TAMBAH FOTO NOTE */
+    .add-photo-note {
+      background: var(--pink-50); border: 1.5px dashed var(--pink-200); border-radius: 18px;
+      padding: 20px 24px; margin-top: 20px;
+      font-size: 0.82rem; color: var(--muted); line-height: 1.65;
+    }
+    .add-photo-note strong { color: var(--pink-600); }
+
+    /* ── OTHER HOBI CARDS ── */
+    #lainnya { background: var(--white); }
+    .hobi-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+    .hobi-card {
+      background: var(--off); border-radius: 20px; padding: 26px;
+      border: 1px solid var(--rose); box-shadow: var(--shadow-card); transition: transform 0.2s;
+    }
+    .hobi-card:hover { transform: translateY(-5px); }
+    .hobi-ico { font-size: 2.2rem; margin-bottom: 14px; display: block; }
+    .hobi-card-name { font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+    .hobi-card-desc { font-size: 0.84rem; color: var(--mid); line-height: 1.7; }
+
+    /* CTA */
+    .hobi-cta-bottom {
+      max-width: 1000px; margin: 0 auto; padding: 0 48px 80px;
+    }
+    .cta-card {
+      background: var(--dark); border-radius: 26px; padding: 44px 48px;
+      display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap;
+    }
+    .cta-card h3 { font-family: 'Fraunces', serif; font-size: 1.7rem; font-weight: 900; color: white; margin-bottom: 8px; }
+    .cta-card h3 em { font-style: italic; color: var(--pink-300); }
+    .cta-card p { font-size: 0.88rem; color: rgba(255,255,255,0.6); }
+    .cta-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn-pink { padding: 13px 26px; border-radius: 100px; background: var(--pink-400); color: #fff; font-size: 0.83rem; font-weight: 600; text-decoration: none; box-shadow: 0 4px 18px rgba(255,102,153,0.3); transition: transform 0.2s; display: inline-flex; align-items: center; gap: 7px; }
+    .btn-pink:hover { transform: translateY(-2px); }
+    .btn-wa { padding: 13px 26px; border-radius: 100px; background: #25D366; color: #fff; font-size: 0.83rem; font-weight: 600; text-decoration: none; box-shadow: 0 4px 14px rgba(37,211,102,0.3); transition: transform 0.2s; display: inline-flex; align-items: center; gap: 7px; }
+    .btn-wa:hover { transform: translateY(-2px); }
+    .btn-wa svg { width: 15px; height: 15px; fill: currentColor; }
+    .btn-white { padding: 13px 26px; border-radius: 100px; background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.85); border: 1px solid rgba(255,255,255,0.2); font-size: 0.83rem; font-weight: 600; text-decoration: none; transition: background 0.2s; display: inline-flex; align-items: center; gap: 7px; }
+    .btn-white:hover { background: rgba(255,255,255,0.18); }
+
+    .reveal { opacity:0; transform:translateY(20px); transition:opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.in { opacity:1; transform:translateY(0); }
+
+    @media(max-width:768px) {
+      nav { padding: 0 20px; }
+      .hobi-hero { padding: 88px 20px 44px; }
+      .section-wrap { padding: 52px 20px; }
+      .carousel-slide { flex: 0 0 260px; }
+      .hobi-cta-bottom { padding: 0 20px 60px; }
+      .cta-card { padding: 32px 24px; }
+    }
+
+    .hobi-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:30px;
+  margin-top:40px;
+}
+
+.hobi-card{
+  background:#fff;
+  border-radius:24px;
+  overflow:hidden;
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
+  transition:.3s;
+}
+
+.hobi-card:hover{
+  transform:translateY(-6px);
+}
+
+.hobi-card img{
+  width:100%;
+  height:250px;
+  object-fit:cover;
+  display:block;
+}
+
+.hobi-card-name{
+  font-size:1.2rem;
+  font-weight:700;
+  padding:20px 20px 10px;
+}
+
+.hobi-card-desc{
+  padding:0 20px 20px;
+  line-height:1.8;
+  color:#666;
+}
+
+@media(max-width:768px){
+  .hobi-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+  </style>
+</head>
+<body>
+
+<div class="bg-layer">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-back">← Kembali</a>
+  <span class="nav-sep">/</span>
+  <span class="nav-current">Hobi & Kesukaan</span>
+  <div class="nav-logo">Dwi Rosa <span>✦</span></div>
+</nav>
+
+<!-- HERO -->
+<div class="hobi-hero">
+  <div class="hobi-hero-tag">✦ Sisi lain Dwi Rosa</div>
+  <h1>Di luar kerjaan,<br>aku suka <em>hal-hal ini!</em></h1>
+  <p>Kerja dan kuliah itu penting, tapi punya waktu buat diri sendiri juga nggak kalah penting. Ini dia hal-hal yang bikin hari-hari aku jadi lebih terisi dan gak pernah bosan 🌸</p>
+</div>
+
+<!-- CROCHET CAROUSEL -->
+<section id="crochet" style="background:rgba(255,214,231,0.1);">
+  <div class="section-wrap">
+    <p class="label reveal">Hobi Utama</p>
+    <h2 class="section-title reveal">Crochet <em> atau yang biasa disebut rajut🧶</em></h2>
+    <p style="font-size:0.92rem;color:var(--mid);line-height:1.75;margin-bottom:32px;max-width:600px;" class="reveal">
+      Crochet itu buat aku kayak meditasi — fokus, tenang, dan hasilnya bisa dilihat dan dipakaiiii ataupun di juall! Aku bikin berbagai item rajutan, dari aksesori sampai dekorasi. Kadang ada yang pesan juga hhii
+      🥰 aku kasi liat beberapa hasilnya yaaa, sebenernya masi banyakk, cuma belum sempat buat foto ><
+    </p>
+
+    <div class="carousel-wrap reveal">
+      <div class="carousel" id="crochetCarousel">
+
+        <!--
+          =====================================================
+          CARA TAMBAH FOTO CROCHET:
+          1. Taruh foto di folder yang sama
+          2. Ganti src="crochet1.jpg" dengan nama file fotomu
+          3. Ganti teks nama dan deskripsi sesuai item
+          4. Copy-paste slide baru untuk tambah lebih banyak
+          =====================================================
+        -->
+
+        <div class="carousel-slide">
+          <div class="carousel-img">
+            <img src="crochet1.jpeg" alt="Crochet 1" onerror="this.outerHTML='<div class=\'placeholder\'>🧶</div>'" />
+          </div>
+          <div class="carousel-info">
+            <div class="carousel-name">Ini Jamur Crochet</div>
+            <div class="carousel-desc">Benangnya pakai 'milk cotton', aku bikinnya sekitar 45-60 menitan, ini paling best seller sihhh karna emang aku baru promosi dan foto produk (niat) yang ini aja hhe</div>
+            <span class="carousel-tag">Pesanan / Personal</span>
+          </div>
+        </div>
+
+        <div class="carousel-slide">
+          <div class="carousel-img">
+            <img src="crochet2.png" alt="Crochet 2" onerror="this.outerHTML='<div class=\'placeholder\'>🧶</div>'" />
+          </div>
+          <div class="carousel-info">
+            <div class="carousel-name">Ini Jamur jugaa</div>
+            <div class="carousel-desc">Aku bikin ini buat menthor di tempat magangkuu</div>
+            <span class="carousel-tag">gift</span>
+          </div>
+        </div>
+
+        <div class="carousel-slide">
+          <div class="carousel-img">
+            <img src="crochet3.jpeg" alt="Crochet 3" onerror="this.outerHTML='<div class=\'placeholder\'>🧶</div>'" />
+          </div>
+          <div class="carousel-info">
+            <div class="carousel-name">orang bunga</div>
+            <div class="carousel-desc">Ini difotoin temenkuu karna katanya lucuu banget, benangnya pakai 'milk cotton', bikinnya 3 harian</div>
+            <span class="carousel-tag">Personal</span>
+          </div>
+        </div>
+
+        <div class="carousel-slide">
+          <div class="carousel-img">
+            <img src="crochet4.jpeg" alt="Crochet 4" onerror="this.outerHTML='<div class=\'placeholder\'>🧶</div>'" />
+          </div>
+          <div class="carousel-info">
+            <div class="carousel-name">ikann baduttt nemoo</div>
+            <div class="carousel-desc">aku bikin ini karna lucu ajaaa, pakai benang 'milk cottnon', bikinnya 30 menit karna gampang</div>
+            <span class="carousel-tag">Personal</span>
+          </div>
+        </div>
+
+        <div class="carousel-slide">
+          <div class="carousel-img">
+            <img src="crochet5.jpeg" alt="Crochet 5" onerror="this.outerHTML='<div class=\'placeholder\'>🧶</div>'" />
+          </div>
+          <div class="carousel-info">
+            <div class="carousel-name">Karakter Anime - Zenitsu</div>
+            <div class="carousel-desc">aku bikin ini karna pengen coba bikin karakter anime, benangnya 'milk cotton' bikinnya 6 jam TT lama juga yaa</div>
+            <span class="carousel-tag">Gift</span>
+          </div>
+        </div>
+
+        <div class="carousel-slide">
+          <div class="carousel-img">
+            <img src="crochet6.png" alt="Crochet 5" onerror="this.outerHTML='<div class=\'placeholder\'>🧶</div>'" />
+          </div>
+          <div class="carousel-info">
+            <div class="carousel-name">Syall Mikasa</div>
+            <div class="carousel-desc">aku bikin ini karna terinspirasi dari anime yang aku tonton dan iniii Project terpanjang akuu, bikinnya 2 minggu, agak bosenin karna ngulang polaa, tapi aku suka hasilnyaa, pake benang 'milk cotton'</div>
+            <span class="carousel-tag">Personal</span>
+          </div>
+        </div>
+
+        <div class="carousel-slide">
+          <div class="carousel-img">
+            <img src="crochet7.jpeg" alt="Crochet 5" onerror="this.outerHTML='<div class=\'placeholder\'>🧶</div>'" />
+          </div>
+          <div class="carousel-info">
+            <div class="carousel-name">Kapibaraa</div>
+            <div class="carousel-desc">Aku bikin ini karna buat gift temenn karna aku pinjam jas hujan diaa, ini harusnya ada topi dan tas buat aksesorisnya tpi ga sempet bikin hhe, bikinnya 30 menitan, pakai benang 'milk cotton'</div>
+            <span class="carousel-tag">Pesanan / Personal</span>
+          </div>
+        </div>
+
+        <div class="carousel-slide">
+          <div class="carousel-img">
+            <img src="crochet8.png" alt="Crochet 5" onerror="this.outerHTML='<div class=\'placeholder\'>🧶</div>'" />
+          </div>
+          <div class="carousel-info">
+            <div class="carousel-name">Boneka Orang unicorn</div>
+            <div class="carousel-desc">Aku bikin ini karna lucuu. bikinnya dr pagi sampe sore deh, karna waktu itu aku free time. pakai benang 'milk cotton' btw ini sizenya gedee</div>
+            <span class="carousel-tag">Personal</span>
+          </div>
+        </div>
+
+        <div class="carousel-slide">
+          <div class="carousel-img">
+            <img src="crochet9.jpeg" alt="Crochet 5" onerror="this.outerHTML='<div class=\'placeholder\'>🧶</div>'" />
+          </div>
+          <div class="carousel-info">
+            <div class="carousel-name">Rapunzel Crochet</div>
+            <div class="carousel-desc">Aku bikin ini karna cantikk, bikinnya 3 jam-an karna bnyk aksesorisnya, pakai benang 'milk cottnon'</div>
+            <span class="carousel-tag">Personal</span>
+          </div>
+        </div>
+
+        <div class="carousel-slide">
+          <div class="carousel-img">
+            <img src="crochet10.jpeg" alt="Crochet 5" onerror="this.outerHTML='<div class=\'placeholder\'>🧶</div>'" />
+          </div>
+          <div class="carousel-info">
+            <div class="carousel-name">Pouch sebaguna</div>
+            <div class="carousel-desc">Aku bikin ini karna aku merasa ini akan berguna hhe.</div>
+            <span class="carousel-tag">Personal</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Navigasi carousel -->
+      <div class="carousel-nav">
+        <button class="carousel-btn" id="prevBtn" onclick="scrollCarousel(-1)">←</button>
+        <button class="carousel-btn" id="nextBtn" onclick="scrollCarousel(1)">→</button>
+        <div class="carousel-dots" id="carouselDots"></div>
+      </div>
+    </div>
+
+
+
+<!-- HOBI LAINNYA -->
+<section id="lainnya" style="background:var(--white);">
+  <div class="section-wrap">
+    <p class="label reveal">Di luar pekerjaan</p>
+    <h2 class="section-title reveal">Hal yang aku <em>suka</em></h2>
+
+    <div class="hobi-grid">
+
+      <div class="hobi-card reveal">
+        <img src="catur.png" alt="Crochet">
+        <div class="hobi-card-name">Main Catur</div>
+        <div class="hobi-card-desc">
+          Sendari kecil aku suka main catur sama ayah, sempat sering ikut lomba juga pas SD dan suka main catur sama guru di sekolah hahaha, tapi sekarang jarang nemu lomba catur nasional sih hhu. aku lebih suka main offline makanya elo ku kecil, sekarnag paling main sama orang random dikomunitas.
+        </div>
+      </div>
+
+      <div class="hobi-card reveal">
+        <img src="ml.png" alt="Desain">
+        <div class="hobi-card-name">Main ML</div>
+        <div class="hobi-card-desc">
+          Aku main ML dari 2019 sewaktu aku SMP, suka dibilang "uda main lama ko belum imo" :((( tapi seru bangettt, dulu role aku jung sama mm, cuma skrg tu sulit ya main jung (suka diremehin) jadinya aku main mid sama mm deh, kadang2 exp atau tank kalo gaada yang pick TT
+        </div>
+      </div>
+
+      <div class="hobi-card reveal">
+        <img src="gambar.png" alt="Musik">
+        <div class="hobi-card-name">Menggambar</div>
+        <div class="hobi-card-desc">
+          
+        </div>
+      </div>
+
+      <div class="hobi-card reveal">
+        <img src="images/coffee.jpg" alt="Coffee">
+        <div class="hobi-card-name">Baca Bukuuu dan Nonton Film</div>
+        <div class="hobi-card-desc">
+          belum sempet masukin foto...... pokoknya buku fav aku dr seriesnya keigo, laut bercerita, ronggeng dukuh paruk dll.
+          kalo film aku sukanya nonton dracin kolosal, bukan short dracin yeee BEDAAAA BGTTT!!!!
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAWAH -->
+<div class="hobi-cta-bottom">
+  <div class="cta-card reveal">
+    <div>
+      <h3>Udah kenal aku? <em>Yuk ngobrol!</em></h3>
+      <p>Kalau mau tau lebih banyak atau ada peluang kerja yang cocok, jangan ragu hubungi aku ya 🌸</p>
+    </div>
+    <div class="cta-btns">
+      <a href="https://wa.me/6289509499219?text=Halo+Dwi+Rosa!" class="btn-wa" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        Chat WA
+      </a>
+      <a href="CV_DwiRosaHandayani.pdf" class="btn-pink" download>⬇ Download CV</a>
+      <a href="index.html#contact" class="btn-white">Lihat Kontak →</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* ── REVEAL ── */
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('in'), i * 70); });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => obs.observe(el));
+
+  /* ── CAROUSEL ── */
+  const carousel = document.getElementById('crochetCarousel');
+  const slides = carousel.querySelectorAll('.carousel-slide');
+  const dotsWrap = document.getElementById('carouselDots');
+  let currentIdx = 0;
+
+  // buat dots
+  slides.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goTo(i);
+    dotsWrap.appendChild(d);
+  });
+
+  function updateDots() {
+    document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === currentIdx));
+  }
+
+  function goTo(idx) {
+    currentIdx = Math.max(0, Math.min(idx, slides.length - 1));
+    const slideW = slides[0].offsetWidth + 20;
+    carousel.scrollTo({ left: currentIdx * slideW, behavior: 'smooth' });
+    updateDots();
+  }
+
+  function scrollCarousel(dir) { goTo(currentIdx + dir); }
+
+  // update dot saat swipe manual
+  carousel.addEventListener('scroll', () => {
+    const slideW = slides[0].offsetWidth + 20;
+    currentIdx = Math.round(carousel.scrollLeft / slideW);
+    updateDots();
+  });
+
+  // drag to scroll (desktop)
+  let isDown = false, startX, scrollLeft;
+  carousel.addEventListener('mousedown', e => { isDown = true; carousel.classList.add('grabbing'); startX = e.pageX - carousel.offsetLeft; scrollLeft = carousel.scrollLeft; });
+  carousel.addEventListener('mouseleave', () => { isDown = false; carousel.classList.remove('grabbing'); });
+  carousel.addEventListener('mouseup', () => { isDown = false; carousel.classList.remove('grabbing'); });
+  carousel.addEventListener('mousemove', e => { if (!isDown) return; e.preventDefault(); const x = e.pageX - carousel.offsetLeft; carousel.scrollLeft = scrollLeft - (x - startX) * 1.5; });
+</script>
+</body>
+</html>
